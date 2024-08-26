@@ -5,13 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatGPT</title>
     <style>
-        /* Your existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 400px;
+            max-width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-box {
+            padding: 20px;
+            height: 450px;
+            overflow-y: auto;
+            flex-grow: 1;
+            background-color: #e9ecef;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-box p {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #f1f0f0;
+            color: #333;
+            align-self: flex-start;
+        }
+        .input-box {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+        .input-box button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            outline: none;
+        }
+        .input-box button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
     <div class="chat-container">
-        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-box" id="chatBox">
+            <!-- Chat messages will appear here -->
+        </div>
         <div class="input-box">
             <input type="text" id="userInput" placeholder="Type a message..." />
             <button onclick="sendMessage()">Send</button>
@@ -54,7 +126,7 @@
                         'Authorization': `Bearer ${apiKey.trim()}`
                     },
                     body: JSON.stringify({
-                        model: 'gpt-3.5-turbo',
+                        model: 'gpt-4o-mini',  // Adjust the model name if necessary
                         messages: [{ role: 'user', content: userInput }],
                     })
                 });
